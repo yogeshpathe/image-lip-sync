@@ -19,6 +19,8 @@ RUN bash ./download_weights.sh
 # Stage 2: Build the final application image
 FROM python:3.10-slim
 
+RUN apt-get update && apt-get install -y libgl1-mesa-glx libglib2.0-0 ffmpeg
+
 WORKDIR /app
 
 # Copy the pre-built MuseTalk environment
