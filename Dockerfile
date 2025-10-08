@@ -31,6 +31,7 @@ COPY . .
 # Install our application's dependencies
 RUN pip install -r requirements.txt
 RUN python -m nltk.downloader punkt
+RUN python -m nltk.downloader punkt_tab
 
 # Expose the port the app runs on
 EXPOSE 8000
