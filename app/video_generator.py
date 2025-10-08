@@ -30,8 +30,8 @@ def generate_video_from_text(text, image_path="image.png"):
         os.remove(f)
 
     # Construct the command to run MuseTalk's inference script
-    # Note: We are using the Python executable from our virtual environment
-    python_executable = os.path.join("venv", "Scripts", "python.exe")
+    # Note: We are using the Python executable from the container's environment
+    python_executable = "python"
     inference_script = os.path.join(MUSE_TALK_DIR, "scripts", "inference.py")
 
     command = [
@@ -48,7 +48,7 @@ def generate_video_from_text(text, image_path="image.png"):
     env = os.environ.copy()
     muse_talk_abs_path = os.path.abspath(MUSE_TALK_DIR)
     if 'PYTHONPATH' in env:
-        env['PYTHONPATH'] = f"{muse_talk_abs_path};{env['PYTHONPATH']}"
+        env['PYTHONPATH'] = f"{muse_talk_abs_path}:{env['PYTHONPATH']}"
     else:
         env['PYTHONPATH'] = muse_talk_abs_path
 
