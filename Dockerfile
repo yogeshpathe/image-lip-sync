@@ -9,6 +9,7 @@ RUN git clone https://github.com/TMElyralab/MuseTalk.git
 
 # Install MuseTalk dependencies
 WORKDIR /app/MuseTalk
+RUN pip install torch torchvision
 RUN pip install -r requirements.txt
 RUN pip install mmcv mmpose --no-deps
 
