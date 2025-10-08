@@ -24,13 +24,13 @@ WORKDIR /app
 # Copy the pre-built MuseTalk environment
 COPY --from=musetalk_builder /app/MuseTalk /app/MuseTalk
 COPY --from=musetalk_builder /root/.cache /root/.cache
+COPY --from=musetalk_builder /usr/local/lib/python3.10/site-packages /usr/local/lib/python3.10/site-packages
 
 # Copy our application code
 COPY . .
 
 # Install our application's dependencies
 RUN pip install -r requirements.txt
-RUN python -m nltk.downloader punkt
 RUN python -m nltk.downloader punkt_tab
 
 # Expose the port the app runs on
